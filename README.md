@@ -1,14 +1,7 @@
 ![](https://framagit.org/luc/lufi/raw/master/themes/default/public/img/lufi128.png)
 
-[![Build Status](https://drone.xataz.net/api/badges/xataz/docker-lufi/status.svg)](https://drone.xataz.net/xataz/docker-lufi)
-[![](https://images.microbadger.com/badges/image/xataz/lufi.svg)](https://microbadger.com/images/xataz/lufi "Get your own image badge on microbadger.com")
-[![](https://images.microbadger.com/badges/version/xataz/lufi.svg)](https://microbadger.com/images/xataz/lufi "Get your own version badge on microbadger.com")
-
-> This image is build and push with [drone.io](https://github.com/drone/drone), a circle-ci like self-hosted.
-> If you don't trust, you can build yourself.
-
 ## Tag available
-* latest, 0.03.5, 0.03 [(lufi/Dockerfile)](https://github.com/xataz/docker-lufi/blob/master/Dockerfile)
+* latest, 0.04.6, 0.04 [(lufi/Dockerfile)](./blob/master/Dockerfile)
 
 ## Description
 What is [lufi](https://framagit.org/luc/lufi) ?
@@ -24,7 +17,7 @@ Is that all? No. All the files are encrypted by the browser! It means that your 
 ## BUILD IMAGE
 
 ```shell
-docker build -t xataz/lufi github.com/xataz/docker-lufi.git#master
+docker build -t victor-rds/lufi github.com/victor-rds/docker-lufi.git#master
 ```
 
 ## Configuration
@@ -32,7 +25,7 @@ docker build -t xataz/lufi github.com/xataz/docker-lufi.git#master
 * UID : choose uid for launching lufi (default : 991)
 * GID : choose gid for launching lufi (default : 991)
 * WEBROOT : webroot of lufi (default : /)
-* SECRET : random string used to encrypt cookies (default : 0423bab3aea2d87d5eedd9a4e8173618)
+* SECRET : random string used to encrypt cookies (default : will be generated on the first run)
 * MAX_FILE_SIZE : maximum file size of an uploaded file in bytes (default : 10000000000)
 * CONTACT : lufi contact (default : contact@domain.tld)
 * DEFAULT_DELAY : default time limit for files in days (default : 1 (0 for unlimited))
@@ -40,13 +33,10 @@ docker build -t xataz/lufi github.com/xataz/docker-lufi.git#master
 * THEME : theme for lufi (default : default)
 * ALLOW_PWD_ON_FILES : enable download password (default : 1 (0 => disable, 1 => enable))
 
-Tips : you can use the following command to generate SECRET. `date +%s | md5sum | head -c 32`
-
 ### Volumes
 * /usr/lufi/lufi.conf : lufi's configuration file is here
 * /usr/lufi/data : lufi's database is here
 * /usr/lufi/files : Location of uploaded files
-* /themes : Location of themes
 
 ### Ports
 * 8081
@@ -54,7 +44,7 @@ Tips : you can use the following command to generate SECRET. `date +%s | md5sum 
 ## Usage
 ### Simple launch
 ```shell
-docker run -d -p 8081:8081 xataz/lufi
+docker run -d -p 8081:8081 victor-rds/lufi
 ```
 URI access : http://XX.XX.XX.XX:8081
 
@@ -69,7 +59,7 @@ docker run -d -p 8181:8081 \
     -e SECRET=$(date +%s | md5sum | head -c 32) \
     -e CONTACT=contact@mydomain.com \
     -e MAX_FILE_SIZE=250000000 \
-    xataz/lufi
+    victor-rds/lufi
 ```
 URI access : http://XX.XX.XX.XX:8181/lufi
 
