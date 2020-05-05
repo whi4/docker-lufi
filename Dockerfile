@@ -1,23 +1,14 @@
-FROM alpine:3.8
+FROM alpine:latest
 
-ARG LUFI_VERSION=0.03.5
+ARG LUFI_VERSION=master
 
 ENV GID=991 \
     UID=991 \
-    SECRET=0423bab3aea2d87d5eedd9a4e8173618 \
-    CONTACT=contact@domain.tld \
-    MAX_FILE_SIZE=1000000000 \
-    WEBROOT=/ \
-    DEFAULT_DELAY=1 \
-    MAX_DELAY=0 \
-    THEME=default \
-    ALLOW_PWD_ON_FILES=1 \
-    POLICY_WHEN_FULL=warn
+    LUFI_DIR=/usr/lufi
 
-LABEL description="lufi based on alpine" \
-      tags="latest 0.03.5 0.03" \
-      maintainer="xataz <https://github.com/xataz>" \
-      build_ver="201812081215"
+LABEL description="lufi based on Alpine" \
+      maintainer="victor-rds <https://github.com/victor-rds>" \
+      build_ver="202005051820"
 
 RUN apk add --update --no-cache --virtual .build-deps \
                 build-base \
@@ -28,6 +19,7 @@ RUN apk add --update --no-cache --virtual .build-deps \
                 perl-dev \
                 libidn-dev \
                 postgresql-dev \
+                mariadb-dev \
                 wget \
     && apk add --update --no-cache \
                 libressl \
@@ -41,20 +33,19 @@ RUN apk add --update --no-cache --virtual .build-deps \
                 postgresql-libs \
     && echo | cpan \
     && cpan install Carton \
-    && git clone -b ${LUFI_VERSION} https://framagit.org/luc/lufi.git /usr/lufi \
-    && cd /usr/lufi \
-    && echo "requires ''Mojo::mysql';" >> /usr/lufi/cpanfile \
+    && git clone -b ${LUFI_VERSION} https://framagit.org/luc/lufi.git ${LUFI_DIR} \
+    && cd ${LUFI_DIR} \
     && rm -rf cpanfile.snapshot \
     && carton install \
     && apk del .build-deps \
-    && rm -rf /var/cache/apk/* /root/.cpan* /usr/lufi/local/cache/*
+    && rm -rf /var/cache/apk/* /root/.cpan* ${LUFI_DIR}/local/cache/*
 
-VOLUME /usr/lufi/data /usr/lufi/files
-
+WORKDIR ${LUFI_DIR}
+VOLUME ${LUFI_DIR}/data ${LUFI_DIR}/files
 EXPOSE 8081
 
 COPY startup /usr/local/bin/startup
-COPY lufi.conf /usr/lufi/lufi.conf
+COPY lufi.conf.template ${LUFI_DIR}/lufi.conf.template
 RUN chmod +x /usr/local/bin/startup
 
 CMD ["/usr/local/bin/startup"]
