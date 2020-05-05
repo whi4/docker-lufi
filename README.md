@@ -59,7 +59,7 @@ docker run -d -p 8181:8081 \
     -e SECRET=$(date +%s | md5sum | head -c 32) \
     -e CONTACT=contact@mydomain.com \
     -e MAX_FILE_SIZE=250000000 \
-    victor-rds/lufi
+    victorrds/lufi
 ```
 URI access : http://XX.XX.XX.XX:8181/lufi
 

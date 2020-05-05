@@ -1,7 +1,7 @@
 version: '3'
 services:
     lufi:
-        image: victor.rds/lufi
+        image: victorrds/lufi
         environment:
             - CONTACT=your@contact.com
             - MAX_DELAY=60
