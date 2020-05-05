@@ -1,7 +1,7 @@
 ![](https://framagit.org/luc/lufi/raw/master/themes/default/public/img/lufi128.png)
 
 ## Tag available
-* latest, 0.04.6, 0.04 [(lufi/Dockerfile)](./blob/master/Dockerfile)
+* latest, 0.04.6, 0.04 [(lufi/Dockerfile)](./Dockerfile)
 
 ## Description
 What is [lufi](https://framagit.org/luc/lufi) ?
