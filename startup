@@ -11,6 +11,7 @@ if [ ! -e "${LUFI_DIR}/lufi.conf" ]; then
             -e 's|<instance_name>|'${INSTANCE_NAME:-Lufi}'|' \
             -e 's|<secret>|'${SECRET:-`date +%s | sha256sum | head -c 64`}'|' \
             -e 's|<contact>|'${CONTACT:-contact@domain.tld}'|' \
+            -e 's|<report>|'${REPORT:-report@domain.tld}'|' \
             -e 's|<max_file_size>|'${MAX_FILE_SIZE:-104857600}'|' \
             -e 's|<webroot>|'${WEBROOT:-/}'|' \
             -e 's|<default_delay>|'${DEFAULT_DELAY:-1}'|' \

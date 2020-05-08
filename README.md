@@ -1,7 +1,7 @@
 ![](https://framagit.org/luc/lufi/raw/master/themes/default/public/img/lufi128.png)
 ![Build and Push](https://github.com/victor-rds/docker-lufi/workflows/Build%20and%20Push/badge.svg)
 
-## Tag available
+## Tags available
 * latest, 0.04.6[(lufi/Dockerfile)](./Dockerfile)
 
 ## Description
@@ -15,12 +15,6 @@ Is that all? No. All the files are encrypted by the browser! It means that your 
 
 **This image does not contain root processes**
 
-## BUILD IMAGE
-
-```shell
-docker build -t victor-rds/lufi github.com/victor-rds/docker-lufi.git#master
-```
-
 ## Configuration
 ### Environments
 * UID : choose uid for launching lufi (default : 991)
@@ -28,7 +22,8 @@ docker build -t victor-rds/lufi github.com/victor-rds/docker-lufi.git#master
 * WEBROOT : webroot of lufi (default : /)
 * SECRET : random string used to encrypt cookies (default : will be generated on the first run)
 * MAX_FILE_SIZE : maximum file size of an uploaded file in bytes (default : 10000000000)
-* CONTACT : lufi contact (default : contact@domain.tld)
+* CONTACT : Lufi isntance contact (default : contact@domain.tld)
+* REPORT : URL or an email address to receive file reports (default : report@domain.tld)
 * DEFAULT_DELAY : default time limit for files in days (default : 1 (0 for unlimited))
 * MAX_DELAY : number of days after which the files will be deleted (default : 0 for unlimited)
 * THEME : theme for lufi (default : default)
@@ -45,9 +40,9 @@ docker build -t victor-rds/lufi github.com/victor-rds/docker-lufi.git#master
 ## Usage
 ### Simple launch
 ```shell
-docker run -d -p 8081:8081 victor-rds/lufi
+docker run -d -p 8081:8081 victorrds/lufi
 ```
-URI access : http://XX.XX.XX.XX:8081
+URI access : http://localhost:8081
 
 ### Advanced launch
 ```shell
@@ -62,7 +57,7 @@ docker run -d -p 8181:8081 \
     -e MAX_FILE_SIZE=250000000 \
     victorrds/lufi
 ```
-URI access : http://XX.XX.XX.XX:8181/lufi
+URI access : http://localhost:8181/lufi
 
 ## Contributing
 Any contributions are very welcome !

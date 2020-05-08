@@ -26,7 +26,7 @@
     # Put an URL or an email address to receive file reports and uncomment it
     # It's for make reporting illegal files easy for users
     # MANDATORY
-    #report => '<report>',
+    report => '<report>',
 
     # Array of random strings used to encrypt cookies
     # optional, default is ['fdjsofjoihrei'], PLEASE, CHANGE IT
