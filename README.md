@@ -2,7 +2,7 @@
 ![Build and Push](https://github.com/victor-rds/docker-lufi/workflows/Build%20and%20Push/badge.svg)
 
 ## Tags available
-* latest, 0.04.6[(lufi/Dockerfile)](./Dockerfile)
+* latest, 0.05.1[(lufi/Dockerfile)](./Dockerfile)
 
 ## Description
 What is [lufi](https://framagit.org/luc/lufi) ?
