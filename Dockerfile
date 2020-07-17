@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:3.12.0
 
 ARG LUFI_VERSION=master
 
@@ -6,9 +6,8 @@ ENV GID=991 \
     UID=991 \
     LUFI_DIR=/usr/lufi
 
-LABEL description="lufi based on Alpine" \
-      maintainer="victor-rds <https://github.com/victor-rds>" \
-      build_ver="202005051820"
+LABEL description="lufi on alpine" \
+      maintainer="victor-rds <https://github.com/victor-rds>"
 
 RUN apk add --update --no-cache --virtual .build-deps \
                 build-base \
