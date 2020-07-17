@@ -31,11 +31,13 @@ RUN apk add --update --no-cache --virtual .build-deps \
                 su-exec \
                 postgresql-libs \
     && echo | cpan \
+    && cpan install CPAN \
+    && cpan reload CPAN \
     && cpan install Carton \
     && git clone -b ${LUFI_VERSION} https://framagit.org/luc/lufi.git ${LUFI_DIR} \
     && cd ${LUFI_DIR} \
-    && rm -rf cpanfile.snapshot \
-    && carton install \
+    #&& rm cpanfile.snapshot \
+    && carton install --deployment --without=test --without=swift-storage --without=ldap \
     && apk del .build-deps \
     && rm -rf /var/cache/apk/* /root/.cpan* ${LUFI_DIR}/local/cache/*
 
