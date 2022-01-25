@@ -1,4 +1,4 @@
-FROM arm32v6/alpine:3.12.0
+FROM --platform=linux/arm32v6 alpine:3.12.0
 
 ARG LUFI_VERSION=master
 
