@@ -7,7 +7,7 @@ ENV GID=991 \
     LUFI_DIR=/usr/lufi
 
 LABEL description="lufi on alpine" \
-      maintainer="victor-rds <https://github.com/victor-rds>"
+      maintainer="originally: victor-rds <https://github.com/victor-rds>"
 
 RUN apk add --update --no-cache --virtual .build-deps \
                 build-base \
